@@ -3,7 +3,7 @@ import getData from '../data/dataDriver.js';
 const projectRouter = Router();
 
 projectRouter.get('/', async (req, res) => {
-    res.send(await getData('test'))
+    res.send(await getData('projects'))
 })
 
 export default projectRouter;
