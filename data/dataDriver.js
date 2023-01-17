@@ -40,13 +40,12 @@ export const addNewEntry = async (table, data) => {
         }
     });
     return {
-        message: `Operation successful, added new entry to ${table} t able.`
+        message: `Operation successful, added new entry to ${table} table.`
     }
 }
 
 export const deleteEntry = async(table, id) => {
     const entry = await findEntryById(table, id);
-    console.log(entry)
     if (typeof entry === 'object') {
         const sql = `DELETE FROM ${table} WHERE id = ${id}`;
         await db.run(sql, (err) => {

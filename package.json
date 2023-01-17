@@ -1,7 +1,7 @@
 {
   "name": "portfolioapi",
   "version": "1.0.0",
-  "description": "A simple API to return data about my projects and certifications",
+  "description": "An API to return data about my projects and certifications",
   "main": "server.js",
   "type": "module",
   "scripts": {
