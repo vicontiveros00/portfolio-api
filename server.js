@@ -10,13 +10,13 @@ const port = process.env.PORT || 3000;
 
 app.use(json());
 app.use((req, res, next) => {
-    const apiKey = req.body.apiKey;
-    if (!apiKey || apiKey !== process.env.API_KEY) {
-        res.status(401).json({
-            error: 'Unauthorized use of API'
-        })
-    } else {
+    const apiKey = req.headers.authorization;
+    if (apiKey === process.env.API_KEY) {
         next();
+    } else {
+        res.status(401).json({
+            error: 'Access denied'
+        })
     }
 })
 

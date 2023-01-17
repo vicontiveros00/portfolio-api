@@ -1,6 +1,7 @@
 /routes/api.rest
 .env
 /node_modules
+/data_backups
 
 .dockerignore
 fly.toml

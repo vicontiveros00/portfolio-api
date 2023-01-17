@@ -5,8 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev-start": "nodemon server.js",
-    "start": "node server.js"
+    "dev-start": "nodemon server.js"
   },
   "author": "Víctor Ontiveros",
   "license": "ISC",
