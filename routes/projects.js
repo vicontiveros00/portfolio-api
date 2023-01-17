@@ -1,9 +1,56 @@
-import { Router } from 'express';
-import getData from '../data/dataDriver.js';
+import { response, Router } from 'express';
+import { addNewEntry, deleteEntry, getData } from '../data/dataDriver.js';
 const projectRouter = Router();
 
 projectRouter.get('/', async (req, res) => {
-    res.send(await getData('projects'))
+    try {
+        const data = await getData('projects');
+        res.send(data);
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        })
+    }
+})
+
+projectRouter.post('/', async (req, res) => {
+    try {
+        const data = req.body.project || 'error';
+        const response = await addNewEntry('projects', data);
+        if (response.error) {
+            res.status(500).json({
+                error: response.error
+            })
+        } else {
+            res.status(201).json({
+                message: response.message
+            })
+        }
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        });
+    }
+})
+
+projectRouter.delete('/:id', async(req, res) => {
+    try {
+        const data = req.params.id
+        const response = await deleteEntry('projects', data);
+        if (response?.message.includes('Deletion successful.')) {
+            res.status(200).json({
+                message: response.message
+            })
+        } else {
+            res.status(404).json({
+                message: response.message
+            })
+        }
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        })
+    }
 })
 
 export default projectRouter;
